@@ -1,0 +1,8 @@
+# dependencies
+/node_modules
+
+# pacote de deploy da Lambda (gerado por Compress-Archive)
+function.zip
+
+# backups locais
+*.bak
