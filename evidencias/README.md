@@ -14,4 +14,5 @@ Capturadas em 26/10/2026 com a aplicação rodando no cluster Minikube local. To
 | `08-recriacao-automatica-pod.png` | Pod do back-end apagado e recriado automaticamente pelo Deployment |
 | `09-persistencia-do-banco.png` | Pod do MongoDB apagado e recriado sem perda de dados (PVC) |
 | `10-logs-estruturados.png` | Logs JSON dos Pods do back-end (`kubectl logs`) |
+| `11-demo-aplicacao-chrome.gif` | Gravação do uso real no Chrome: criar, concluir e excluir uma tarefa |
 | `saida-comandos.txt` | Saída em texto dos mesmos comandos |
