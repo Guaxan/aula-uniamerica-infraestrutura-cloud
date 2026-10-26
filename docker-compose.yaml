@@ -18,6 +18,8 @@ services:
       - "5000:5000"  # Expõe a porta 5000 do contêiner para a porta 5000 do host
     networks:
       - todo-net
+    environment:
+      - MONGO_URI=mongodb://root:rootpassword@mongo:27017/todo-app?authSource=admin
     depends_on:
       - mongo  # Garante que o MongoDB esteja rodando antes de iniciar o backend
 

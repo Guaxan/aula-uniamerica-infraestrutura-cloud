@@ -1,0 +1,33 @@
+# Configurações que não são segredo.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config
+data:
+  PORT: "5000"
+  # O navegador fala só com o front-end (mesma origem), então o CORS não restringe nada aqui.
+  CORS_ORIGIN: "*"
+---
+# Configuração do nginx do front-end: serve o React e faz proxy de /api para o back-end.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-nginx
+data:
+  default.conf: |
+    server {
+        listen 80;
+
+        location / {
+            root /usr/share/nginx/html;
+            try_files $uri /index.html;
+        }
+
+        # "backend" é o nome do Service; o DNS do cluster resolve para o ClusterIP,
+        # e o kube-proxy distribui as conexões entre os Pods do back-end.
+        location /api/ {
+            proxy_pass http://backend:5000/;
+            proxy_set_header Host $host;
+            proxy_set_header X-Request-Id $request_id;
+        }
+    }
